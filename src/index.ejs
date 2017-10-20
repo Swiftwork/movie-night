@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Primula Test</title>
+
+  <link rel="stylesheet"
+    href="<%= htmlWebpackPlugin.files.chunks['main'].css[0] %>">
+
+  <script src="<%= htmlWebpackPlugin.files.chunks['polyfill'].entry %>"></script>
+</head>
+
+<% var model = htmlWebpackPlugin.options.model %>
+
+<body>
+  <header>
+
+    <nav>
+
+    </nav>
+
+  </header>
+
+  <aside></aside>
+
+  <main>
+    <section class="diagrams">
+      <% model.content.diagrams.forEach(function(diagram) {  %>
+        <c-diagram class="c-diagram" data-model="<%- JSON.stringify(diagram) %>"></c-diagram>
+      <% }); %>
+    </section>
+  </main>
+  
+  <aside></aside>
+
+  <footer></footer>
+
+<script src="<%= htmlWebpackPlugin.files.chunks['vendor'].entry %>"></script>
+<script src="<%= htmlWebpackPlugin.files.chunks['main'].entry %>"></script>
+
+</body>
+</html>

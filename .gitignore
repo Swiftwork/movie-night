@@ -1,0 +1,7 @@
+.cache-loader
+node_modules
+environment.js
+package-lock.json
+yarn.lock
+*.log
+database/data/log_file
