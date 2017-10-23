@@ -10,7 +10,7 @@ module.exports = merge.smart(commonConfig, {
 
   plugins: [
     new ExtractTextPlugin({ disable: true }),
-    new webpack.HotModuleReplacementPlugin(), // enabled for reloads
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: true,
@@ -36,7 +36,7 @@ module.exports = merge.smart(commonConfig, {
   devServer: {
     contentBase: path.join(process.cwd(), 'build'),
     compress: true,
-    hot: true, // enabled for reloads
+    hot: true,
     host: '0.0.0.0',
     port: 8080,
     disableHostCheck: true,

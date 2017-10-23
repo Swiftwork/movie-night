@@ -1,4 +1,4 @@
-.cache-loader
+build
 node_modules
 environment.js
 package-lock.json

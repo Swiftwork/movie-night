@@ -15,18 +15,11 @@ module.exports = merge.smart(commonConfig, {
       minimize: true,
       debug: false,
       options: {
-        htmlLoader: { // TODO: Needed to workaround Angular's html syntax => #id [bind] (event) *ngFor
+        htmlLoader: {
           minimize: true,
           removeAttributeQuotes: false,
-          caseSensitive: true,
-          customAttrSurround: [
-            [/#/, /(?:)/],
-            [/\*/, /(?:)/],
-            [/\[?\(?/, /(?:)/],
-          ],
-          customAttrAssign: [/\)?\]?=/],
         },
-      }
+      },
     }),
     new webpack.optimize.UglifyJsPlugin({
       parallel: {
@@ -40,7 +33,7 @@ module.exports = merge.smart(commonConfig, {
           comments: false,
         },
         mangle: {
-          keep_fnames: true, // https://github.com/angular/angular/issues/10618
+          keep_fnames: true,
         },
       }
     }),
