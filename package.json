@@ -1,7 +1,7 @@
 {
-  "name": "erik-react-test",
+  "name": "primula",
   "version": "1.0.0",
-  "description": "Erik React Test",
+  "description": "Primula",
   "main": "index.js",
   "scripts": {
     "start": "rimraf build/* && webpack-dev-server --config .config/debug.config.js",
