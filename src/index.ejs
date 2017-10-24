@@ -28,10 +28,19 @@
 
   <aside></aside>
 
-  <main>
-    <section class="diagrams">
+  <main class="c-container">
+    <section class="c-grid diagrams" columns="3">
       <% model.content.diagrams.forEach(function(diagram) {  %>
         <c-diagram class="c-diagram" data-model="<%- JSON.stringify(diagram) %>"></c-diagram>
+      <% }); %>
+    </section>
+    
+    <section class="expandables">
+      <% model.content.expandables.forEach(function(expandable) {  %>
+        <article d-expandable="<%= expandable.expanded %>">
+          <header><%= expandable.title %></header>
+          <p><%= expandable.body %></p>
+        </article>
       <% }); %>
     </section>
   </main>

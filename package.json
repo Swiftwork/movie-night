@@ -18,7 +18,8 @@
     "angular-ts-decorators": "1.2.5",
     "core-js": "2.5.1",
     "eslint": "4.9.0",
-    "intl": "1.2.5"
+    "intl": "1.2.5",
+    "normalize.css": "^7.0.0"
   },
   "devDependencies": {
     "@types/angular": "1.6.34",

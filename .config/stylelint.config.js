@@ -13,7 +13,9 @@ module.exports = {
     'value-no-vendor-prefix': true,
 
     /* Custom */
+
     'block-no-empty': null,
+    'at-rule-no-unknown': [true, { ignoreAtRules: ['/^(define-)?mixin/'] }],
     'unit-no-unknown': [true, { ignoreUnits: ['vr'] }],
     'selector-attribute-operator-space-after': null,
     'selector-pseudo-class-no-unknown': [

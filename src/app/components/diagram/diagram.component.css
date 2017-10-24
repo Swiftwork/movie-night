@@ -1,6 +1,6 @@
 .c-diagram {
   display: block;
-  background-color: papayawhip;
+  background-color: white;
 
   &--block {
     display: flex;
@@ -11,6 +11,7 @@
   }
 
   &--title {
+    color: $c_primary_alpha;
     align-self: flex-start;
     width: 100%;
     display: block;
@@ -32,7 +33,7 @@
     &::after {
       content: "";
       display: block;
-      background-color: palevioletred;
+      background-color: $c_primary_beta;
       width: 50px;
       margin-bottom: 10px;
       height: 90%;
@@ -58,6 +59,7 @@
     }
 
     &-label {
+      color: $c_primary_gamma;
       font-weight: 600;
       display: flex;
       align-items: center;

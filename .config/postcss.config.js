@@ -13,6 +13,7 @@ const AUTOPREFIXER_BROWSERS = [
 
 module.exports = ({ file, options, env }) => {
   const variables = typeof options.variables === 'function' ? options.variables() : options.variables;
+  const mixins = typeof options.mixins === 'function' ? options.mixins() : options.mixins;
   return {
     plugins: [
       // Transfer @import rule by inlining content, e.g. @import 'normalize.css'
@@ -28,7 +29,7 @@ module.exports = ({ file, options, env }) => {
       }),
       // Simple template to prevent repeating code, e.g. @define-mixin headline $size { font-size: $size; } span { @mixin headline 32px; }
       // https://github.com/postcss/postcss-mixins
-      require('postcss-mixins')(),
+      require('postcss-mixins')({ mixins: mixins }),
       // Enables @for loop syntax, e.g. @for $i from 1 to 12 { .a-$i { width: calc(100% / 12 * $i) } }
       // https://github.com/xori/postcss-for
       require('postcss-for')(),

@@ -1,21 +1,48 @@
-body {
-  margin: 0;
-  background-color: seashell;
-}
+/* Vendor */
 
-* {
-  box-sizing: border-box;
-}
+@import 'normalize.css';
+
+/* Helpers */
+
+@import './helpers/utilities.css';
+
+/* Base */
+
+@import './base/standardize.css';
+@import './base/typography.css';
+@import './base/general.css';
+@import './base/body.css';
+
+/* Containers */
+
+@import './containers/container.css';
+@import './containers/grid.css';
+
+/* MOCK STYLES */
 
 .diagrams {
-  display: flex;
-  width: 100%;
-  padding: 2vr 1vr;
-
   > * {
-    flex: 1;
-    margin: 0 0.5vr;
     border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.expandables {
+  article {
+    background-color: white;
+    margin-bottom: 1vr;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+
+    header {
+      padding: 0.5vr;
+      border: solid $c_primary_alpha;
+      border-width: 1px 0;
+      color: $c_primary_alpha;
+    }
+
+    p {
+      padding: 0.5vr;
+    }
   }
 }

@@ -1,19 +1,31 @@
 var path = require('path');
 var extend = require('webpack-merge');
 var webpack = require('webpack');
-var DashboardPlugin = require('webpack-dashboard/plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var chokidar = require('chokidar');
-var postcssVariablesPath = path.resolve(process.cwd(), '.config/postcss.variables.js');
 
-chokidar.watch(postcssVariablesPath).on('all', (event, path) => {
-  console.log('\n', '\x1b[36m', '=== Variables Updated ===', '\x1b[0m', '\n');
-  delete require.cache[require.resolve(postcssVariablesPath)];
+var postcssVariablesPath = path.resolve(process.cwd(), 'src', 'styles', 'postcss.variables.js');
+var postcssMixinsPath = path.resolve(process.cwd(), 'src', 'styles', 'postcss.mixins.js');
+
+chokidar.watch([postcssVariablesPath, postcssMixinsPath]).on('all', (event, path) => {
+
+  if (path == postcssVariablesPath) {
+    console.log('\n', '\x1b[36m', '=== Variables Updated ===', '\x1b[0m', '\n');
+    delete require.cache[require.resolve(postcssVariablesPath)];
+
+  } else if (path == postcssMixinsPath) {
+    console.log('\n', '\x1b[36m', '=== Variables Mixins ===', '\x1b[0m', '\n');
+    delete require.cache[require.resolve(postcssMixinsPath)];
+  }
 });
 
 function loadVariables() {
   return require(postcssVariablesPath);
+}
+
+function loadMixins() {
+  return require(postcssMixinsPath);
 }
 
 module.exports = {
@@ -53,7 +65,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        test: /\.(png|jpe?g|gif|svg|woff2?|ttf|eot|ico)$/,
         loader: 'file-loader',
         options: {
           name: 'assets/[name].[ext]?[hash]',
@@ -74,7 +86,7 @@ module.exports = {
               loader: 'postcss-loader', options: {
                 config: {
                   path: path.resolve('.config/postcss.config.js'),
-                  ctx: { variables: loadVariables, },
+                  ctx: { variables: loadVariables, mixins: loadMixins },
                 }
               }
             },
@@ -97,7 +109,7 @@ module.exports = {
             loader: 'postcss-loader', options: {
               config: {
                 path: path.resolve('.config/postcss.config.js'),
-                ctx: { variables: loadVariables, },
+                ctx: { variables: loadVariables, mixins: loadMixins },
               }
             },
           },
@@ -107,7 +119,6 @@ module.exports = {
   },
 
   plugins: [
-    new DashboardPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['main', 'vendor', 'polyfill'],
     }),

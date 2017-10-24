@@ -6,7 +6,7 @@
   "tslint.autoFixOnSave": true,
   "stylelint.enable": true,
   "scss.validate": false,
-  "postcssSorting": "./.config/postcss.sorting.js",
+  "postcssSorting.config": "./.config/postcss.sorting.js",
   "stylefmt.config": "./.config/stylelint.config.js",
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
