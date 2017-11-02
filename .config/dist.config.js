@@ -9,7 +9,6 @@ var commonConfig = require('./common.config.js');
 module.exports = merge.smart(commonConfig, {
 
   plugins: [
-    new ExtractTextPlugin('[name].css?[hash]'),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true,

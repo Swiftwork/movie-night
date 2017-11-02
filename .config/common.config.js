@@ -3,22 +3,9 @@ var extend = require('webpack-merge');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var chokidar = require('chokidar');
 
 var postcssVariablesPath = path.resolve(process.cwd(), 'src', 'styles', 'postcss.variables.js');
 var postcssMixinsPath = path.resolve(process.cwd(), 'src', 'styles', 'postcss.mixins.js');
-
-chokidar.watch([postcssVariablesPath, postcssMixinsPath]).on('all', (event, path) => {
-
-  if (path == postcssVariablesPath) {
-    console.log('\n', '\x1b[36m', '=== Variables Updated ===', '\x1b[0m', '\n');
-    delete require.cache[require.resolve(postcssVariablesPath)];
-
-  } else if (path == postcssMixinsPath) {
-    console.log('\n', '\x1b[36m', '=== Variables Mixins ===', '\x1b[0m', '\n');
-    delete require.cache[require.resolve(postcssMixinsPath)];
-  }
-});
 
 function loadVariables() {
   return require(postcssVariablesPath);
@@ -27,6 +14,24 @@ function loadVariables() {
 function loadMixins() {
   return require(postcssMixinsPath);
 }
+
+var postcssLoaders = [
+  {
+    loader: 'css-loader',
+  },
+  {
+    loader: 'postcss-loader', options: {
+      config: {
+        path: path.resolve('.config/postcss.config.js'),
+        ctx: { variables: loadVariables, mixins: loadMixins },
+      }
+    },
+  },
+  {
+    loader: path.resolve('.config/require-clear-loader.js'),
+    options: { files: [postcssVariablesPath, postcssMixinsPath] },
+  },
+];
 
 module.exports = {
   context: path.resolve(process.cwd(), 'src'),
@@ -78,19 +83,7 @@ module.exports = {
         ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-            },
-            {
-              loader: 'postcss-loader', options: {
-                config: {
-                  path: path.resolve('.config/postcss.config.js'),
-                  ctx: { variables: loadVariables, mixins: loadMixins },
-                }
-              }
-            },
-          ]
+          use: postcssLoaders,
         })
       },
       {
@@ -102,23 +95,13 @@ module.exports = {
           {
             loader: 'style-loader',
           },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'postcss-loader', options: {
-              config: {
-                path: path.resolve('.config/postcss.config.js'),
-                ctx: { variables: loadVariables, mixins: loadMixins },
-              }
-            },
-          },
-        ],
+        ].concat(postcssLoaders),
       },
     ],
   },
 
   plugins: [
+    new ExtractTextPlugin('[name].css?[hash]'),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['main', 'vendor', 'polyfill'],
     }),

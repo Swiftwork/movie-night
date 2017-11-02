@@ -9,7 +9,6 @@ var commonConfig = require('./common.config.js');
 module.exports = merge.smart(commonConfig, {
 
   plugins: [
-    new ExtractTextPlugin({ disable: true }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.LoaderOptionsPlugin({
