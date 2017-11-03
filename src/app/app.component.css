@@ -1,0 +1,26 @@
+.app-component {
+  background: papayawhip;
+  min-height: 100%;
+
+  &--content {
+    margin-top: -2vr;
+    padding: 0 2vr;
+    min-height: 40vh;
+    background-color: white;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+
+    &-poster {
+      margin-top: -2vr;
+      margin-right: 2vr;
+      width: 10vr;
+      float: left;
+      border: 6px solid white;
+      border-radius: 3px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    &-title {
+      padding-top: 2vr;
+    }
+  }
+}

@@ -54,6 +54,9 @@ module.exports = {
       'node_modules'
     ],
     extensions: ['.js', '.ts'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    },
   },
 
   module: {
@@ -64,10 +67,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'ng-cache-loader',
-        options: {
-          exportId: true,
-        },
+        loader: 'vue-html-loader',
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff2?|ttf|eot|ico)$/,
@@ -108,7 +108,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.ejs',
       inject: false,
-      model: require('../src/mock-model.js'),
     }),
     new webpack.NoEmitOnErrorsPlugin(),
   ],

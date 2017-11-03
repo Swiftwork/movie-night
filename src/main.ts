@@ -1,7 +1,14 @@
-import { platformBrowserDynamic } from 'angular-ts-decorators';
+import Vue from 'vue';
+import { AppComponent } from './app/app.component';
 
 import './styles/index.css';
 
-import { PrimulaAppModule } from './app/app';
-
-platformBrowserDynamic().bootstrapModule(PrimulaAppModule, {});
+// tslint:disable:no-unused-expression
+new Vue({
+  el: '#root',
+  template: `<app-component></app-component>`,
+  data: { name: 'World' },
+  components: {
+    AppComponent,
+  },
+});

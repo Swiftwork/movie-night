@@ -7,7 +7,7 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Primula Test</title>
+  <title>Movie Night</title>
 
   <link rel="stylesheet"
     href="<%= htmlWebpackPlugin.files.chunks['main'].css[0] %>">
@@ -18,36 +18,8 @@
 <% var model = htmlWebpackPlugin.options.model %>
 
 <body>
-  <header>
 
-    <nav>
-
-    </nav>
-
-  </header>
-
-  <aside></aside>
-
-  <main class="c-container">
-    <section class="c-grid diagrams" columns="3">
-      <% model.content.diagrams.forEach(function(diagram) {  %>
-        <c-diagram class="c-diagram" data-model="<%- JSON.stringify(diagram) %>"></c-diagram>
-      <% }); %>
-    </section>
-    
-    <section class="expandables">
-      <% model.content.expandables.forEach(function(expandable) {  %>
-        <article d-expandable="<%= expandable.expanded %>">
-          <header><%= expandable.title %></header>
-          <p><%= expandable.body %></p>
-        </article>
-      <% }); %>
-    </section>
-  </main>
-  
-  <aside></aside>
-
-  <footer></footer>
+<main id="root"></main>
 
 <script src="<%= htmlWebpackPlugin.files.chunks['vendor'].entry %>"></script>
 <script src="<%= htmlWebpackPlugin.files.chunks['main'].entry %>"></script>

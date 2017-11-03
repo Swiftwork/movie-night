@@ -17,32 +17,3 @@
 
 @import './containers/container.css';
 @import './containers/grid.css';
-
-/* MOCK STYLES */
-
-.diagrams {
-  > * {
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-  }
-}
-
-.expandables {
-  article {
-    background-color: white;
-    margin-bottom: 1vr;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-
-    header {
-      padding: 0.5vr;
-      border: solid $c_primary_alpha;
-      border-width: 1px 0;
-      color: $c_primary_alpha;
-    }
-
-    p {
-      padding: 0.5vr;
-    }
-  }
-}
