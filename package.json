@@ -1,8 +1,9 @@
 {
-  "name": "primula",
+  "name": "movie-night",
   "version": "1.0.0",
-  "description": "Primula",
+  "description": "Movie night app in vue.js",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "rimraf build/* && webpack-dev-server --config .config/debug.config.js",
     "build:dist": "rimraf build/* && webpack --config .config/dist.config.js",
